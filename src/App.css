@@ -228,9 +228,8 @@
 .basket {
   position: fixed;
   right: 20px;
- top: 20px;
-  width: 30px;
-  max-height: 40px;
+ top: 200px;
+
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -244,10 +243,12 @@
 .basket.open {
   height: auto;
   opacity: 1;
+  width: 300px;
+  max-height: 400px;
 }
 
 .basket.closed {
-  height: 60px; /* Adjust height for the compressed state */
+  height: 40px; /* Adjust height for the compressed state */
   opacity: 0.8;
   overflow: hidden;
 }
