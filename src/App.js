@@ -25,6 +25,8 @@ import pulaoImage from './pulao.jpeg';
 import alooTikkiImage from './aloo-tikki.jpeg';
 import fruitSaladImage from './fruit-salad.jpeg';
 
+
+
 const MenuItem = ({ item, onAdd, onRemove, isHindi }) => (
   <div className="menu-item">
     <img src={item.image} alt={item.name} />
