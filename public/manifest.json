@@ -1,6 +1,6 @@
 {
   "short_name": "HooShop DigiMenu",
-  "name": "Create React App Sample",
+  "name": "HooShop DigiMenu",
   "icons": [
     {
       "src": "favicon.ico",
@@ -9,12 +9,12 @@
     },
     {
       "src": "logo.jpg",
-      "type": "image/png",
+      "type": "image/jng",
       "sizes": "192x192"
     },
     {
       "src": "logo.jpg",
-      "type": "image/png",
+      "type": "image/jng",
       "sizes": "512x512"
     }
   ],
