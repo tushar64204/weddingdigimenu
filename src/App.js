@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { FaMinus, FaPlus, FaTrash, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FaMinus, FaPlus, FaTrash, FaChevronDown, FaChevronUp, FaShoppingBasket } from 'react-icons/fa';
 
 
 // Import images
@@ -166,37 +166,40 @@ const App = () => {
       </div>
 
       <div className={`basket ${isBasketOpen ? 'open' : 'closed'}`}>
-        <div className="basket-header">
-          <h2>{isHindi ? 'आपकी टोकरी' : 'Your Basket'}</h2>
-          <button onClick={() => setIsBasketOpen(!isBasketOpen)}>
-            {isBasketOpen ? <FaChevronUp /> : <FaChevronDown />}
-          </button>
-        </div>
-        {isBasketOpen && (
-          <div className="basket-content">
-            {menuItems.filter(item => item.quantity > 0).map(item => (
-              <div key={item.id} className="basket-item">
-                <img src={item.image} alt={item.name} />
-                <div className="basket-item-details">
-                  <div className="basket-item-name">{isHindi ? item.nameHi : item.name}</div>
-                  <div className="basket-item-description">{isHindi ? item.descriptionHi : item.description}</div>
-                </div>
-                <div className="basket-item-actions">
-                  <button onClick={() => handleRemove(item)}><FaMinus /></button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => handleAdd(item)}><FaPlus /></button>
-                  <button onClick={() => handleRemove(item)}><FaTrash /></button>
-                </div>
-              </div>
-            ))}
-            <div className="basket-footer">
-              <button onClick={handleCheckout}>
-                {isHindi ? 'व्हाट्सएप पर भेजें' : 'Send on WhatsApp'}
-              </button>
-            </div>
-          </div>
-        )}
+      <div className="basket-header">
+        <h2>{isHindi ? 'आपकी टोकरी' : 'Your Basket'}</h2>
+        <button onClick={() => setIsBasketOpen(!isBasketOpen)}>
+          {isBasketOpen ? <FaChevronUp /> : <FaChevronDown />}
+        </button>
       </div>
+      <div className="basket-header-icon" onClick={() => setIsBasketOpen(!isBasketOpen)}>
+        <FaShoppingBasket />
+      </div>
+      {isBasketOpen && (
+        <div className="basket-content">
+          {menuItems.filter(item => item.quantity > 0).map(item => (
+            <div key={item.id} className="basket-item">
+              <img src={item.image} alt={item.name} />
+              <div className="basket-item-details">
+                <div className="basket-item-name">{isHindi ? item.nameHi : item.name}</div>
+                <div className="basket-item-description">{isHindi ? item.descriptionHi : item.description}</div>
+              </div>
+              <div className="basket-item-actions">
+                <button onClick={() => handleRemove(item)}><FaMinus /></button>
+                <span>{item.quantity}</span>
+                <button onClick={() => handleAdd(item)}><FaPlus /></button>
+                <button onClick={() => handleRemove(item)}><FaTrash /></button>
+              </div>
+            </div>
+          ))}
+          {/* <div className="basket-footer">
+            <button onClick={handleCheckout}>
+              {isHindi ? 'व्हाट्सएप पर भेजें' : 'Send on WhatsApp'}
+            </button>
+          </div> */}
+        </div>
+      )}
+    </div>
 
       <div className="checkout-form">
         <h2>{isHindi ? 'चेकआउट' : 'Checkout'}</h2>
