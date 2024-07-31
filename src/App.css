@@ -1,367 +1,38 @@
 .App {
   text-align: center;
-  background-color: #fffaf0;
-  color: #8b4513;
-  font-family: 'Garamond', serif;
 }
 
-.dark-mode {
-  background-color: #2f4f4f;
-  color: #f5f5dc;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
 .App-header {
-  background-color: #8b4513;
-  background-image: url('bg.png'); /* Add your background image */
-  background-size: cover; /* Ensures the image covers the entire area */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
-  width: 100%;
-  padding: 20px;
-  color: white;
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 15px rgba(255, 223, 186, 0.8);
-}
-
-.wedding-board {
-  position: relative;
-  padding: 20px;
-  border: 5px solid gold;
-  border-radius: 10px;
-  background-color: rgba(139, 69, 19, 0.8); /* Slightly transparent to let background image show through */
-  box-shadow: 0 0 15px rgba(255, 223, 186, 0.8);
-}
-
-.wedding-board h1 {
-  font-size: 2.5em;
-  margin: 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.lighting {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.lighting::before, .lighting::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  /* background: url('bg.png') no-repeat center center; */
-  background-size: cover;
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-.lighting::before {
-  animation: flicker 1.5s infinite alternate;
-}
-
-.lighting::after {
-  animation: flicker 2s infinite alternate;
-}
-
-@keyframes flicker {
-  0% { opacity: 0.7; }
-  100% { opacity: 0.9; }
-}
-
-.controls {
-  margin: 20px;
-}
-
-.controls button {
-  background-color: #000000;
-  color: goldenrod;
-  padding: 10px 20px;
-  margin: 5px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.controls button:hover {
-  background-color: #a0522d;
-}
-
-.controls input {
-  padding: 10px;
-  margin: 5px;
-  border-radius: 5px;
-  border: 1px solid #8b4513;
-}
-
-.categories {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.categories button {
-  background-color: #8b4513;
-  color: #f5f5dc;
-  padding: 10px 20px;
-  margin: 5px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.categories button:hover {
-  background-color: #a0522d;
-}
-
-.content {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-/* Basket Styles */
-.basket {
-  position: fixed;
-  right: 20px;
- top: 20px;
-  width: 300px;
-  max-height: 400px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
-  padding: 10px;
-  z-index: 1000;
-  transition: height 0.3s ease, opacity 0.3s ease;
-}
-
-.basket.open {
-  height: auto;
-  opacity: 1;
-}
-
-.basket.closed {
-  height: 60px; /* Adjust height for the compressed state */
-  opacity: 0.8;
-  overflow: hidden;
-}
-
-.basket-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.basket-content {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-.basket-item {
-  display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-}
-
-.basket-item img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin-right: 10px;
-}
-
-.basket-item-details {
-  flex: 1;
-}
-
-.basket-item-name {
-  font-size: 1em;
-  font-weight: bold;
-}
-
-.basket-item-description {
-  font-size: 0.9em;
-  color: #666;
-}
-
-.basket-item-actions {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.basket-item-actions button {
-  background: #f2f2f2;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.basket-item-actions button:hover {
-  background: #e0e0e0;
-}
-
-.basket-item-actions span {
-  font-size: 1em;
-  padding: 0 10px;
-}
-
-.basket-footer {
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
-  text-align: center;
-}
-
-.basket-footer button {
-  background: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 1em;
-}
-
-
-.menu-list {
-  flex: 2;
-  display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.cart-basket {
-  flex: 1;
-  border-left: 2px solid #8b4513;
-  padding-left: 20px;
+.App-link {
+  color: #61dafb;
 }
 
-.menu-item {
-  background-color: #fff;
-  border: 1px solid #8b4513;
-  border-radius: 10px;
-  margin: 10px;
-  padding: 10px;
-  width: 200px;
-  text-align: left;
-}
-
-.menu-item img {
-  width: 100%;
-  height: auto;
-  border-bottom: 1px solid #8b4513;
-}
-
-.item-details {
-  padding: 10px;
-}
-
-.item-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.item-actions button {
-  background-color: #8b4513;
-  color: #f5f5dc;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-
-.item-actions button:hover {
-  background-color: #a0522d;
-}
-/* Checkout Form Styles */
-.checkout-form {
-  margin: 20px auto;
-  max-width: 500px;
-  padding: 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.checkout-form h2 {
-  margin-bottom: 20px;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #333;
-}
-
-.checkout-form input {
-  padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 1em;
-  color: #333;
-}
-
-.checkout-form input:focus {
-  border-color: #8b4513;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2);
-}
-
-.checkout-button {
-  background-color: #8b4513;
-  color: #fff;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.1em;
-  width: 100%;
-  box-sizing: border-box;
-  transition: background-color 0.3s ease;
-}
-
-.checkout-button:hover {
-  background-color: #a0522d;
-}
-
-.checkout-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-/* Dark mode adjustments */
-.dark-mode .controls button,
-.dark-mode .categories button,
-.dark-mode .item-actions button,
-.dark-mode .checkout-button {
-  background-color: #4b5d5f;
-  color: goldenrod;
-}
-
-.dark-mode .controls input,
-.dark-mode .checkout-form input {
-  border: 1px solid #4b5d5f;
-  color: #000000;
-}
-
-.dark-mode .menu-item {
-  background-color: #3b4f4f;
-  border: 1px solid #4b5d5f;
-}
-
-.dark-mode .menu-item img {
-  border-bottom: 1px solid #4b5d5f;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
