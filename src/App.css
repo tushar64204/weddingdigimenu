@@ -178,7 +178,7 @@
 /* Media query for mobile screens */
 @media (max-width: 768px) {
   .menu-item {
-    width: calc(40% - 20px); /* Adjust width to fit two items per row */
+    width: calc(45% - 25px); /* Adjust width to fit two items per row */
   }
   
   .cart-basket {

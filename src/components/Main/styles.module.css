@@ -185,12 +185,12 @@
   flex: 1;
 }
 
-.basketItem-name {
+.basketItemname {
   font-size: 1em;
   font-weight: bold;
 }
 
-.basketItem-description {
+.basketItemdescription {
   font-size: 0.9em;
   color: #666;
 }
@@ -218,13 +218,13 @@
   padding: 0 10px;
 }
 
-.basket-footer {
+.basketfooter {
   border-top: 1px solid #ddd;
   padding-top: 10px;
   text-align: center;
 }
 
-.basket-footer button {
+.basketfooter button {
   background: #007bff;
   color: #fff;
   border: none;
@@ -235,14 +235,14 @@
 }
 
 
-.menu-list {
+.menulist {
   flex: 2;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.cart-basket {
+.cartbasket {
   flex: 1;
   border-left: 2px solid #8b4513;
   padding-left: 20px;
@@ -287,7 +287,7 @@
   background-color: #a0522d;
 }
 /* Checkout Form Styles */
-.checkout-form {
+.checkoutform {
   margin: 20px auto;
   max-width: 500px;
   padding: 20px;
@@ -296,14 +296,14 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.checkout-form h2 {
+.checkoutform h2 {
   margin-bottom: 20px;
   font-size: 1.5em;
   font-weight: bold;
   color: #333;
 }
 
-.checkout-form input {
+.checkoutform input {
   padding: 12px;
   margin-bottom: 15px;
   border-radius: 8px;
@@ -314,13 +314,13 @@
   color: #333;
 }
 
-.checkout-form input:focus {
+.checkoutform input:focus {
   border-color: #8b4513;
   outline: none;
   box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2);
 }
 
-.checkout-button {
+.checkoutbutton {
   background-color: #8b4513;
   color: #fff;
   padding: 12px 20px;
@@ -333,11 +333,11 @@
   transition: background-color 0.3s ease;
 }
 
-.checkout-button:hover {
+.checkoutbutton:hover {
   background-color: #a0522d;
 }
 
-.checkout-button:disabled {
+.checkoutbutton:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
@@ -346,13 +346,13 @@
 .darkMode .controls button,
 .darkMode .categories button,
 .darkMode .itemActions button,
-.darkMode .checkout-button {
+.darkMode .checkoutbutton {
   background-color: #4b5d5f;
   color: goldenrod;
 }
 
 .darkMode .controls input,
-.darkMode .checkout-form input {
+.darkMode .checkoutform input {
   border: 1px solid #4b5d5f;
   color: #000000;
 }
