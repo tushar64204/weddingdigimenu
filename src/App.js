@@ -39,31 +39,31 @@ const MenuItem = ({ item, onAdd, onRemove, isHindi }) => (
     </div>
   </div>
 );
-// Basket Component
-const Basket = ({ basketItems, onAdd, onRemove, isHindi }) => (
-  <div className="basket">
-    <h2>{isHindi ? 'खरीदी गई वस्तुएँ' : 'Basket'}</h2>
-    {basketItems.length === 0 ? (
-      <p>{isHindi ? 'कोई आइटम नहीं है' : 'No items in the basket'}</p>
-    ) : (
-      basketItems.map(item => (
-        <div key={item.id} className="basket-item">
-          <img src={item.image} alt={item.name} />
-          <div className="item-details">
-            <h4>{isHindi ? item.nameHi : item.name}</h4>
-            <p>{isHindi ? item.descriptionHi : item.description}</p>
-            <div className="item-actions">
-              <button onClick={() => onRemove(item)}><FaMinus /></button>
-              <span>{item.quantity}</span>
-              <button onClick={() => onAdd(item)}><FaPlus /></button>
-              <button onClick={() => onRemove(item, true)}><FaTrash /></button>
-            </div>
-          </div>
-        </div>
-      ))
-    )}
-  </div>
-);
+// // Basket Component
+// const Basket = ({ basketItems, onAdd, onRemove, isHindi }) => (
+//   <div className="basket">
+//     <h2>{isHindi ? 'खरीदी गई वस्तुएँ' : 'Basket'}</h2>
+//     {basketItems.length === 0 ? (
+//       <p>{isHindi ? 'कोई आइटम नहीं है' : 'No items in the basket'}</p>
+//     ) : (
+//       basketItems.map(item => (
+//         <div key={item.id} className="basket-item">
+//           <img src={item.image} alt={item.name} />
+//           <div className="item-details">
+//             <h4>{isHindi ? item.nameHi : item.name}</h4>
+//             <p>{isHindi ? item.descriptionHi : item.description}</p>
+//             <div className="item-actions">
+//               <button onClick={() => onRemove(item)}><FaMinus /></button>
+//               <span>{item.quantity}</span>
+//               <button onClick={() => onAdd(item)}><FaPlus /></button>
+//               <button onClick={() => onRemove(item, true)}><FaTrash /></button>
+//             </div>
+//           </div>
+//         </div>
+//       ))
+//     )}
+//   </div>
+// );
 
 
 const App = () => {
