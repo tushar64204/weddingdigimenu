@@ -145,12 +145,14 @@
   padding: 10px;
   width: 200px;
   text-align: left;
+  border-radius: 2%;
 }
 
 .menu-item img {
   width: 100%;
   height: auto;
   border-bottom: 1px solid #8b4513;
+  border-radius: 10%;
 }
 
 .item-details {
@@ -218,18 +220,18 @@
 .dark-mode .categories button,
 .dark-mode .item-actions button,
 .dark-mode .checkout-button {
-  background-color: #4b5d5f;
+  background-color: #140b01;
   color: goldenrod;
 }
 
-.dark-mode .controls input,
+.dark-mode .controls input,.payment-content, .checkout-form,
 .dark-mode .checkout-form input {
   border: 1px solid #4b5d5f;
   color: #000000;
 }
 
 .dark-mode .menu-item {
-  background-color: #3b4f4f;
+  background-color: #000000;
   border: 1px solid #4b5d5f;
 }
 
@@ -241,14 +243,33 @@
   position: fixed;
   right: 20px;
   bottom: 20px; /* Position the icon at the bottom */
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  background-color: #000000;
+  border: 1px solid #3d3d3d;
+  border-radius: 0px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
+ 
   z-index: 1000;
   transition: height 0.3s ease, width 0.3s ease, opacity 0.3s ease;
 }
+.payment-option {
+  display: 100%; /* Ensures the div takes only the space it needs */
+  padding: 10px; /* Adds some padding for spacing */
+  border: 1px solid #000000; /* Optional: Adds a light border */
+  border-radius: 5px; /* Optional: Rounds the corners */
+  margin: 0 auto; /* Centers the container if it's inside a parent element */
+  text-align: left; /* Aligns the content to the left */
+}
+
+.payment-option h4 {
+  margin: 0; /* Ensures minimal margin */
+  font-size: 26px; /* Adjusts heading size */
+}
+
+.payment-option label {
+  display: block; /* Stacks the labels vertically */
+  margin-bottom: 8px; /* Adds some spacing between the options */
+}
+
 
 .basket.open {
   height: auto;
@@ -320,10 +341,7 @@
   font-weight: bold;
 }
 
-.basket-item-description {
-  font-size: 0.9em;
-  color: #666;
-}
+
 
 .basket-item-actions {
   display: flex;
@@ -355,7 +373,7 @@
 }
 
 .basket-footer button {
-  background: #007bff;
+  background: #472902;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -364,9 +382,7 @@
   font-size: 1em;
 }
 
-.basket-footer button:hover {
-  background: #0056b3;
-}
+
 
 /* Checkout Form Styles */
 .checkout-form {
@@ -422,4 +438,38 @@
 .checkoutbutton:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+
+.payment-content {
+  border: 0px solid #ddd;
+  padding: 0px;
+  border-radius: 0px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+#upiDetails {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#qrcode {
+  margin: 20px auto;
+  width: 200px;
+  height: 200px;
+}
+
+.c5 {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #5e3902;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.c5:hover {
+  background-color: #0056b3;
 }
