@@ -153,12 +153,12 @@ const App = () => {
 
   const UpiPayment = ({ grandTotal }) => {
     
-    const [paymentMethod, setPaymentMethod] = useState("");
+    // const [paymentMethod, setPaymentMethod] = useState("");
     const upiId = "9817409607@ybl";
   
-    const handlePaymentMethodChange = (event) => {
-      setPaymentMethod(event.target.value);
-    };
+    // const handlePaymentMethodChange = (event) => {
+    //   setPaymentMethod(event.target.value);
+    // };
   
     const upiLink = `upi://pay?pa=${upiId}&pn=PaperPalace&am=${grandTotal}&tn=Payment for Chaupad Food`;
   
