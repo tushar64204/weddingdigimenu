@@ -28,6 +28,27 @@
   justify-content: center;
 }
 
+/* Button styling for heading */
+.heading-icon {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background-color: goldenrod; /* Blue color */
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.heading-icon:hover {
+  background-color: #7f5300;
+}
+
+
 .header-logo {
   width: 100px; /* Adjust the size of the logo */
   height: auto; /* Maintain aspect ratio */
@@ -35,6 +56,22 @@
 }
 
 
+.basket-header-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-count {
+  position: absolute;
+  top: -16px;
+  right: -0px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
 
 .wedding-board {
   position: relative;
@@ -264,7 +301,7 @@
 .basket {
   position: fixed;
   right: 20px;
-  bottom: 20px; /* Position the icon at the bottom */
+  top: 250px; /* Position the icon at the bottom */
   background-color: #640000;
   border: 1px solid #3d3d3d;
   color: goldenrod;
