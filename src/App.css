@@ -237,37 +237,44 @@
   }
 }
 
-.checkout-form {
-  margin: 20px;
-  background-color: #2c2c2c; /* Dark background for the form */
-  padding: 20px;
-  border-radius: 10px; /* Rounded corners for the form */
-}
 
-.checkout-form input {
-  padding: 10px;
-  margin: 5px;
-  border-radius: 5px;
-  border: 1px solid #d2691e; /* Lighter shade for input border */
-  background-color: #ffffff; /* Darker background for inputs */
-  color: #f5f5f5; /* Light text color */
-  width: calc(50% - 12px);
-}
 
 .checkout-button {
-  background-color: #d2691e; /* Lighter background for the button */
-  color: #ffffff; /* White text color */
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
+  background-color: #000000; /* White background for contrast */
+  color: #ffcc00; /* Gold color for text */
+  border: 2px solid #ffcc00; /* Gold border */
+  border-radius: 5px; /* Slightly rounded corners */
+  padding: 5px 10px; /* Small padding for small button size */
+  font-size: 14px; /* Adjust font size for small buttons */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
 
 .checkout-button:hover {
-  background-color: #e07b39; /* Slightly lighter on hover */
+  background-color: #ffcc00; /* Gold background on hover */
+  color: #fff; /* White text on hover */
+}
+/* Style for basket payment button */
+.payment-button {
+  background-color: #000000; /* White background for contrast */
+  color: #ffcc00; /* Gold color for text */
+  border: 2px solid #ffcc00; /* Gold border */
+  border-radius: 5px; /* Slightly rounded corners */
+  padding: 5px 10px; /* Small padding for small button size */
+  font-size: 14px; /* Adjust font size for small buttons */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
 
+.payment-button:hover {
+  background-color: #ffcc00; /* Gold background on hover */
+  color: #fff; /* White text on hover */
+}
+
+/* Add gap between buttons */
+.checkout-button + .payment-button {
+  margin-left: 10px; /* Adjust gap between buttons */
+}
 /* Dark mode adjustments */
 .dark-mode .controls button,
 .dark-mode .categories button,
@@ -319,6 +326,7 @@
   text-align: left; /* Aligns the content to the left */
   display: flex; /* Use flexbox for horizontal alignment */
   align-items: center; /* Aligns items vertically centered */
+  background-color: #e2a048e3;
 }
 
 .payment-option h4 {
@@ -451,7 +459,7 @@
   margin: 20px auto;
   max-width: 500px;
   padding: 20px;
-  background: #fff;
+  background: #e2a048e3;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -508,7 +516,7 @@
   padding: 0px;
   border-radius: 0px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: #e2a048e3;
 }
 
 #upiDetails {

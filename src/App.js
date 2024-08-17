@@ -372,9 +372,7 @@ const App = () => {
          <div className={`basket ${isBasketOpen ? 'open' : 'closed'}`}>
   <div className="basket-header">
     <h2>{isHindi ? 'आपकी टोकरी' : 'Your Basket'}</h2>
-    <button onClick={() => document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' })}>
-      {isHindi ? 'ऑर्डर करें' : 'Checkout'}
-    </button>
+    
     <button onClick={() => setIsBasketOpen(!isBasketOpen)}>
       {isBasketOpen ? <FaChevronUp /> : <FaChevronDown />}
     </button>
@@ -391,9 +389,13 @@ const App = () => {
   </div>
 
   <br></br>
-  <button onClick={() => document.getElementById('pay').scrollIntoView({ behavior: 'smooth' })}>
-    {isHindi ? 'बास्केट बिल भुगतान' : 'Basket bill payment'}
-  </button>
+  <button class="checkout-button" onClick={() => document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' })}>
+  {isHindi ? 'ऑर्डर करें' : 'Checkout'}
+</button>
+<button class="payment-button" onClick={() => document.getElementById('pay').scrollIntoView({ behavior: 'smooth' })}>
+  {isHindi ? 'बास्केट बिल भुगतान' : 'Basket bill payment'}
+</button>
+
 
   {isBasketOpen && (
     <div className="basket-content">
@@ -507,6 +509,7 @@ const App = () => {
             UPI
           </label>
         </div>
+        <br></br>
         <button className="checkout-button"onClick={handleCheckout}>
           {isHindi ? 'व्हाट्सएप पर भेजें' : 'Send on WhatsApp'}
         </button>
