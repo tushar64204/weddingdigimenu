@@ -301,7 +301,7 @@
 .basket {
   position: fixed;
   right: 20px;
-  top: 250px; /* Position the icon at the bottom */
+ bottom: 20px; /* Position the icon at the bottom */
   background-color: #640000;
   border: 1px solid #3d3d3d;
   color: goldenrod;
