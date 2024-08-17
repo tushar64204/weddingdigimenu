@@ -6,13 +6,13 @@
 }
 
 .dark-mode {
-  background-color: #2f4f4f;
+  background-color: #000000;
   color: #f5f5dc;
 }
 
 .App-header {
   background-color: #8b4513;
-  background-image: url('bg.png'); /* Add your background image */
+  /* background-image: url('bg.png'); Add your background image */
   background-size: cover; /* Ensures the image covers the entire area */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents the image from repeating */
@@ -23,7 +23,18 @@
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 15px rgba(255, 223, 186, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.header-logo {
+  width: 100px; /* Adjust the size of the logo */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 15px; /* Space between the logo and the text */
+}
+
+
 
 .wedding-board {
   position: relative;
@@ -191,19 +202,24 @@
 
 .checkout-form {
   margin: 20px;
+  background-color: #2c2c2c; /* Dark background for the form */
+  padding: 20px;
+  border-radius: 10px; /* Rounded corners for the form */
 }
 
 .checkout-form input {
   padding: 10px;
   margin: 5px;
   border-radius: 5px;
-  border: 1px solid #8b4513;
+  border: 1px solid #d2691e; /* Lighter shade for input border */
+  background-color: #ffffff; /* Darker background for inputs */
+  color: #f5f5f5; /* Light text color */
   width: calc(50% - 12px);
 }
 
 .checkout-button {
-  background-color: #8b4513;
-  color: #f5f5dc;
+  background-color: #d2691e; /* Lighter background for the button */
+  color: #ffffff; /* White text color */
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -212,7 +228,7 @@
 }
 
 .checkout-button:hover {
-  background-color: #a0522d;
+  background-color: #e07b39; /* Slightly lighter on hover */
 }
 
 /* Dark mode adjustments */
@@ -220,10 +236,16 @@
 .dark-mode .categories button,
 .dark-mode .item-actions button,
 .dark-mode .checkout-button {
-  background-color: #140b01;
+  background-color: #2e2923;
   color: goldenrod;
 }
-
+.dark-mode .basket {
+  background-color: #000000e3;
+  color: goldenrod;
+}
+.dark-mode .App-header {
+  background-color: #140b01;
+}
 .dark-mode .controls input,.payment-content, .checkout-form,
 .dark-mode .checkout-form input {
   border: 1px solid #4b5d5f;
@@ -231,7 +253,7 @@
 }
 
 .dark-mode .menu-item {
-  background-color: #000000;
+  background-color: #271b1b;
   border: 1px solid #4b5d5f;
 }
 
@@ -243,31 +265,34 @@
   position: fixed;
   right: 20px;
   bottom: 20px; /* Position the icon at the bottom */
-  background-color: #000000;
+  background-color: #640000;
   border: 1px solid #3d3d3d;
+  color: goldenrod;
   border-radius: 0px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
- 
+  overflow-y: auto; /* Enable vertical scrolling */
   z-index: 1000;
   transition: height 0.3s ease, width 0.3s ease, opacity 0.3s ease;
 }
 .payment-option {
-  display: 100%; /* Ensures the div takes only the space it needs */
   padding: 10px; /* Adds some padding for spacing */
   border: 1px solid #000000; /* Optional: Adds a light border */
   border-radius: 5px; /* Optional: Rounds the corners */
   margin: 0 auto; /* Centers the container if it's inside a parent element */
   text-align: left; /* Aligns the content to the left */
+  display: flex; /* Use flexbox for horizontal alignment */
+  align-items: center; /* Aligns items vertically centered */
 }
 
 .payment-option h4 {
   margin: 0; /* Ensures minimal margin */
   font-size: 26px; /* Adjusts heading size */
+  margin-right: 15px; /* Adds spacing between the heading and options */
 }
 
 .payment-option label {
-  display: block; /* Stacks the labels vertically */
-  margin-bottom: 8px; /* Adds some spacing between the options */
+  display: inline-block; /* Displays labels inline horizontally */
+  margin-right: 15px; /* Adds some spacing between the options */
 }
 
 
@@ -367,13 +392,13 @@
 }
 
 .basket-footer {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #af8000;
   padding-top: 10px;
   text-align: center;
 }
 
 .basket-footer button {
-  background: #472902;
+  background: #d48114;
   color: #fff;
   border: none;
   border-radius: 4px;

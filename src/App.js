@@ -8,6 +8,7 @@ import { FaMinus, FaPlus, FaTrash, FaChevronDown, FaChevronUp, FaShoppingBasket 
 
 
 // maincourse
+import logo from './images/logo.png'; // Adjust the path to your logo
 import dalFryImage from './images/DalFry.jpg';
 import dalTadkaImage from './images/daltadka.jpg';
 import dalHaryaliImage from './images/dal-haryali.jpg';
@@ -237,9 +238,15 @@ const App = () => {
     <div className={`App ${isDarkMode ? 'dark-mode' : ''}`}>
       
       <header className="App-header">
+ 
+   
+
         <div className="wedding-board">
+        <img src={logo} alt="Logo" className="header-logo" />
           <h1>{isHindi ? 'चौपाड़ मेन्यू' : 'Chaupad Menu '}</h1>
-          
+         
+      
+ 
           <div className="lighting"></div>
         </div>
       </header>
