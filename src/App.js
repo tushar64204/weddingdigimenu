@@ -4,6 +4,7 @@ import './App.css';
 import { FaMinus, FaPlus, FaTrash, FaChevronDown, FaChevronUp, FaShoppingBasket, FaArrowUp  } from 'react-icons/fa';
 
 
+
 // Import images
 
 
@@ -51,12 +52,39 @@ import vegKohlapuriImage from './images/Veg-Kolhapuri.jpg';
 const TAX_RATE = 0.05; // Example 18% tax rate
 
 // Component for displaying menu items
-const MenuItem = ({ item, onAdd, onRemove, isHindi }) => (
+const MenuItem = ({ item, onAdd, onRemove, isHindi, handlePlateSizeChange }) => (
   <div className="menu-item">
     <img src={item.image} alt={item.name} />
     <div className="item-details">
       <h4>{isHindi ? item.nameHi : item.name}</h4>
       <p>{isHindi ? item.descriptionHi : item.description}</p>
+      
+      {/* Show toggle only for items with half and full plate options */}
+      {item.hasHalfAndFullPlate && (
+        <div className="plate-size-toggle">
+          <label>
+            <input
+              type="radio"
+              name={`plateSize-${item.id}`}
+              value="half"
+              checked={item.selectedPlateSize === 'half'}
+              onChange={() => handlePlateSizeChange(item.id, 'half')}
+            />
+            {isHindi ? 'हाफ प्लेट' : 'Half Plate'}
+          </label>
+          <label>
+            <input
+              type="radio"
+              name={`plateSize-${item.id}`}
+              value="full"
+              checked={item.selectedPlateSize === 'full'}
+              onChange={() => handlePlateSizeChange(item.id, 'full')}
+            />
+            {isHindi ? 'फुल प्लेट' : 'Full Plate'}
+          </label>
+        </div>
+      )}
+
       <p>{isHindi ? `कीमत: ₹${item.price}` : `Price: ₹${item.price}`}</p>
       <div className="item-actions">
         <button onClick={() => onRemove(item)}><FaMinus /></button>
@@ -102,42 +130,79 @@ const MenuItem = ({ item, onAdd, onRemove, isHindi }) => (
 
 const App = () => {
   const [menuItems, setMenuItems] = useState([
-    { id: 1, name: 'Dal Fry', nameHi: 'दाल फ्राई', description: 'Flavorful dal fry', descriptionHi: 'स्वादिष्ट दाल फ्राई', category: 'maincourse', quantity: 0, price: 120, image: dalFryImage },
-    { id: 2, name: 'Dal Tadka', nameHi: 'दाल तड़का', description: 'Spiced dal tadka', descriptionHi: 'मसालेदार दाल तड़का', category: 'maincourse', quantity: 0, price: 130, image: dalTadkaImage },
-    { id: 3, name: 'Dal Haryali', nameHi: 'दाल हरियाली', description: 'Green herb dal', descriptionHi: 'हरी जड़ी-बूटी की दाल', category: 'maincourse', quantity: 0, price: 140, image: dalHaryaliImage },
-    { id: 4, name: 'Dal Makhani', nameHi: 'दाल मखनी', description: 'Creamy dal makhani', descriptionHi: 'क्रीमी दाल मखनी', category: 'maincourse', quantity: 0, price: 160, image: dalMakhaniImage },
-    { id: 5, name: 'Dal Handi', nameHi: 'दाल हांडी', description: 'Traditional handi dal', descriptionHi: 'पारंपरिक हांडी दाल', category: 'maincourse', quantity: 0, price: 150, image: dalHandiImage },
-    { id: 6, name: 'Rajma Fry', nameHi: 'राजमा फ्राई', description: 'Fried rajma curry', descriptionHi: 'तली हुई राजमा करी', category: 'maincourse', quantity: 0, price: 140, image: rajmaFryImage },
-    { id: 7, name: 'Chana Masala', nameHi: 'चना मसाला', description: 'Spiced chickpea curry', descriptionHi: 'मसालेदार चना करी', category: 'maincourse', quantity: 0, price: 130, image: chanaMasalaImage },
-    { id: 8, name: 'Kadhi Fry', nameHi: 'कढ़ी फ्राई', description: 'Fried kadhi curry', descriptionHi: 'तली हुई कढ़ी करी', category: 'maincourse', quantity: 0, price: 110, image: kadhiFryImage },
-    { id: 9, name: 'Shahi Paneer', nameHi: 'शाही पनीर', description: 'Rich shahi paneer', descriptionHi: 'रिच शाही पनीर', category: 'maincourse', quantity: 0, price: 170, image: shahiPaneerImage },
-    { id: 10, name: 'Kadhai Paneer', nameHi: 'कड़ाही पनीर', description: 'Paneer in kadhai masala', descriptionHi: 'कड़ाही मसाला में पनीर', category: 'maincourse', quantity: 0, price: 160, image: kadhaiPaneerImage },
-    { id: 11, name: 'Matar Paneer', nameHi: 'मटर पनीर', description: 'Paneer with peas', descriptionHi: 'मटर के साथ पनीर', category: 'maincourse', quantity: 0, price: 150, image: matarPaneerImage },
-    { id: 12, name: 'Paneer Butter Masala', nameHi: 'पनीर बटर मसाला', description: 'Paneer in butter masala', descriptionHi: 'बटर मसाला में पनीर', category: 'maincourse', quantity: 0, price: 180, image: paneerButterMasalaImage },
-    { id: 13, name: 'Paneer Dopyaza', nameHi: 'पनीर दोप्याजा', description: 'Paneer with onions', descriptionHi: 'प्याज के साथ पनीर', category: 'maincourse', quantity: 0, price: 160, image: paneerDopyazaImage },
-    { id: 14, name: 'Paneer Handi', nameHi: 'पनीर हांडी', description: 'Paneer in handi', descriptionHi: 'हांडी में पनीर', category: 'maincourse', quantity: 0, price: 170, image: paneerHandiImage },
-    { id: 15, name: 'Paneer Bhurji', nameHi: 'पनीर भुर्जी', description: 'Scrambled paneer', descriptionHi: 'पनीर भुर्जी', category: 'maincourse', quantity: 0, price: 140, image: paneerBhurjiImage },
-    { id: 16, name: 'Paneer Lababdar', nameHi: 'पनीर लबाबदार', description: 'Rich paneer curry', descriptionHi: 'रिच पनीर करी', category: 'maincourse', quantity: 0, price: 190, image: paneerLababdarImage },
-    { id: 17, name: 'Paneer Pasonda', nameHi: 'पनीर पासोंडा', description: 'Paneer in spiced gravy', descriptionHi: 'मसालेदार ग्रेवी में पनीर', category: 'maincourse', quantity: 0, price: 200, image: paneerPasondaImage },
-    { id: 18, name: 'Tandoori Paneer', nameHi: 'तंदूरी पनीर', description: 'Grilled tandoori paneer', descriptionHi: 'ग्रिल्ड तंदूरी पनीर', category: 'maincourse', quantity: 0, price: 210, image: tandooriPaneerImage },
-    { id: 19, name: 'Mushroom Butter Masala', nameHi: 'मशरूम बटर मसाला', description: 'Mushrooms in butter masala', descriptionHi: 'बटर मसाला में मशरूम', category: 'maincourse', quantity: 0, price: 190, image: mushroomButterMasalaImage },
-    { id: 20, name: 'Matar Mushroom', nameHi: 'मटर मशरूम', description: 'Mushrooms with peas', descriptionHi: 'मटर के साथ मशरूम', category: 'maincourse', quantity: 0, price: 160, image: matarMushroomImage },
+    { id: 1, name: 'Dal Fry', nameHi: 'दाल फ्राई', description: 'Flavorful dal fry', descriptionHi: 'स्वादिष्ट दाल फ्राई', category: 'maincourse', quantity: 0, price: 80,  image: dalFryImage },
+    { id: 2, name: 'Dal Tadka', nameHi: 'दाल तड़का', description: 'Spiced dal tadka', descriptionHi: 'मसालेदार दाल तड़का', category: 'maincourse', quantity: 0, price: 80, image: dalTadkaImage },
+    { id: 3, name: 'Dal Haryali', nameHi: 'दाल हरियाली', description: 'Green herb dal', descriptionHi: 'हरी जड़ी-बूटी की दाल', category: 'maincourse', quantity: 0, price: 160, image: dalHaryaliImage },
+    { id: 4, name: 'Dal Makhani', nameHi: 'दाल मखनी', description: 'Creamy dal makhani', descriptionHi: 'क्रीमी दाल मखनी', category: 'maincourse', quantity: 0, price: 200, image: dalMakhaniImage },
+    { id: 5, name: 'Dal Handi', nameHi: 'दाल हांडी', description: 'Traditional handi dal', descriptionHi: 'पारंपरिक हांडी दाल', category: 'maincourse', quantity: 0, price: 170, image: dalHandiImage },
+    { id: 6, name: 'Rajma Fry', nameHi: 'राजमा फ्राई', description: 'Fried rajma curry', descriptionHi: 'तली हुई राजमा करी', category: 'maincourse', quantity: 0, price: 170, image: rajmaFryImage },
+    { id: 7, name: 'Chana Masala', nameHi: 'चना मसाला', description: 'Spiced chickpea curry', descriptionHi: 'मसालेदार चना करी', category: 'maincourse', quantity: 0, price: 150, image: chanaMasalaImage },
+    { id: 8, name: 'Kadhi Fry', nameHi: 'कढ़ी फ्राई', description: 'Fried kadhi curry', descriptionHi: 'तली हुई कढ़ी करी', category: 'maincourse', quantity: 0, price: 100, image: kadhiFryImage },
+    { id: 9, name: 'Shahi Paneer', nameHi: 'शाही पनीर', description: 'Rich shahi paneer', descriptionHi: 'रिच शाही पनीर', category: 'maincourse', quantity: 0, price: 200, image: shahiPaneerImage },
+    { id: 10, name: 'Kadhai Paneer', nameHi: 'कड़ाही पनीर', description: 'Paneer in kadhai masala', descriptionHi: 'कड़ाही मसाला में पनीर', category: 'maincourse', quantity: 0, price: 210, image: kadhaiPaneerImage },
+    { id: 11, name: 'Matar Paneer', nameHi: 'मटर पनीर', description: 'Paneer with peas', descriptionHi: 'मटर के साथ पनीर', category: 'maincourse', quantity: 0, price: 190, image: matarPaneerImage },
+    { id: 12, name: 'Paneer Butter Masala', nameHi: 'पनीर बटर मसाला', description: 'Paneer in butter masala', descriptionHi: 'बटर मसाला में पनीर', category: 'maincourse', quantity: 0, price: 220, image: paneerButterMasalaImage },
+    { id: 13, name: 'Paneer Dopyaza', nameHi: 'पनीर दोप्याजा', description: 'Paneer with onions', descriptionHi: 'प्याज के साथ पनीर', category: 'maincourse', quantity: 0, price: 200, image: paneerDopyazaImage },
+    { id: 14, name: 'Paneer Handi', nameHi: 'पनीर हांडी', description: 'Paneer in handi', descriptionHi: 'हांडी में पनीर', category: 'maincourse', quantity: 0, price: 250, image: paneerHandiImage },
+    { id: 15, name: 'Paneer Bhurji', nameHi: 'पनीर भुर्जी', description: 'Scrambled paneer', descriptionHi: 'पनीर भुर्जी', category: 'maincourse', quantity: 0, price: 180, image: paneerBhurjiImage },
+    { id: 16, name: 'Paneer Lababdar', nameHi: 'पनीर लबाबदार', description: 'Rich paneer curry', descriptionHi: 'रिच पनीर करी', category: 'maincourse', quantity: 0, price: 250, image: paneerLababdarImage },
+    { id: 17, name: 'Paneer Pasonda', nameHi: 'पनीर पासोंडा', description: 'Paneer in spiced gravy', descriptionHi: 'मसालेदार ग्रेवी में पनीर', category: 'maincourse', quantity: 0, price: 240, image: paneerPasondaImage },
+    { id: 18, name: 'Tandoori Paneer', nameHi: 'तंदूरी पनीर', description: 'Grilled tandoori paneer', descriptionHi: 'ग्रिल्ड तंदूरी पनीर', category: 'maincourse', quantity: 0, price: 240, image: tandooriPaneerImage },
+    { id: 19, name: 'Mushroom Butter Masala', nameHi: 'मशरूम बटर मसाला', description: 'Mushrooms in butter masala', descriptionHi: 'बटर मसाला में मशरूम', category: 'maincourse', quantity: 0, price: 220, image: mushroomButterMasalaImage },
+    { id: 20, name: 'Matar Mushroom', nameHi: 'मटर मशरूम', description: 'Mushrooms with peas', descriptionHi: 'मटर के साथ मशरूम', category: 'maincourse', quantity: 0, price: 180, image: matarMushroomImage },
     { id: 21, name: 'Mushroom Dopyaza', nameHi: 'मशरूम दोप्याजा', description: 'Mushrooms with onions', descriptionHi: 'प्याज के साथ मशरूम', category: 'maincourse', quantity: 0, price: 180, image: mushroomDopyazaImage },
-    { id: 22, name: 'Tandoori Mushroom', nameHi: 'तंदूरी मशरूम', description: 'Grilled tandoori mushrooms', descriptionHi: 'ग्रिल्ड तंदूरी मशरूम', category: 'maincourse', quantity: 0, price: 220, image: tandooriMushroomImage },
-    { id: 23, name: 'Kadhai Mushroom', nameHi: 'कड़ाही मशरूम', description: 'Mushrooms in kadhai masala', descriptionHi: 'कड़ाही मसाला में मशरूम', category: 'maincourse', quantity: 0, price: 180, image: kadhaiMushroomImage },
-    { id: 24, name: 'Dum Aloo', nameHi: 'दम आलू', description: 'Potato dumplings in gravy', descriptionHi: 'ग्रेवी में आलू दम', category: 'maincourse', quantity: 0, price: 140, image: dumAlooImage },
-    { id: 25, name: 'Jeera Aloo', nameHi: 'जीरा आलू', description: 'Potatoes with cumin', descriptionHi: 'जीरे के साथ आलू', category: 'maincourse', quantity: 0, price: 120, image: jeeraAlooImage },
-    { id: 26, name: 'Mix Veg', nameHi: 'मिक्स वेज', description: 'Mixed vegetables', descriptionHi: 'मिश्रित सब्जियां', category: 'maincourse', quantity: 0, price: 130, image: mixVegImage },
-    { id: 27, name: 'Malai Kofta', nameHi: 'मलाई कोफ्ता', description: 'Kofta in creamy gravy', descriptionHi: 'क्रीमी ग्रेवी में कोफ्ता', category: 'maincourse', quantity: 0, price: 200, image: malaiKoftaImage },
-    { id: 28, name: 'Matar Gobhi', nameHi: 'मटर गोभी', description: 'Peas with cauliflower', descriptionHi: 'मटर के साथ गोभी', category: 'maincourse', quantity: 0, price: 130, image: matarGobhiImage },
-    { id: 29, name: 'Paneer Gobhi', nameHi: 'पनीर गोभी', description: 'Paneer with cauliflower', descriptionHi: 'गोभी के साथ पनीर', category: 'maincourse', quantity: 0, price: 150, image: paneerGobhiImage },
-    { id: 30, name: 'Sev Bhaji', nameHi: 'सेव भाजी', description: 'Sev in spicy gravy', descriptionHi: 'मसालेदार ग्रेवी में सेव', category: 'maincourse', quantity: 0, price: 140, image: sevBhajiImage },
-    { id: 31, name: 'Cheese Tomato', nameHi: 'चीज़ टमाटर', description: 'Cheese with tomatoes', descriptionHi: 'टमाटर के साथ चीज़', category: 'maincourse', quantity: 0, price: 180, image: cheeseTomatoImage },
+    { id: 22, name: 'Tandoori Mushroom', nameHi: 'तंदूरी मशरूम', description: 'Grilled tandoori mushrooms', descriptionHi: 'ग्रिल्ड तंदूरी मशरूम', category: 'maincourse', quantity: 0, price: 240, image: tandooriMushroomImage },
+    { id: 23, name: 'Kadhai Mushroom', nameHi: 'कड़ाही मशरूम', description: 'Mushrooms in kadhai masala', descriptionHi: 'कड़ाही मसाला में मशरूम', category: 'maincourse', quantity: 0, price: 220, image: kadhaiMushroomImage },
+    { id: 24, name: 'Dum Aloo', nameHi: 'दम आलू', description: 'Potato dumplings in gravy', descriptionHi: 'ग्रेवी में आलू दम', category: 'maincourse', quantity: 0, price: 150, image: dumAlooImage },
+    { id: 25, name: 'Jeera Aloo', nameHi: 'जीरा आलू', description: 'Potatoes with cumin', descriptionHi: 'जीरे के साथ आलू', category: 'maincourse', quantity: 0, price: 100, image: jeeraAlooImage },
+    { id: 26, name: 'Mix Veg', nameHi: 'मिक्स वेज', description: 'Mixed vegetables', descriptionHi: 'मिश्रित सब्जियां', category: 'maincourse', quantity: 0, price: 160, image: mixVegImage },
+    { id: 27, name: 'Malai Kofta', nameHi: 'मलाई कोफ्ता', description: 'Kofta in creamy gravy', descriptionHi: 'क्रीमी ग्रेवी में कोफ्ता', category: 'maincourse', quantity: 0, price: 250, image: malaiKoftaImage },
+    { id: 28, name: 'Matar Gobhi', nameHi: 'मटर गोभी', description: 'Peas with cauliflower', descriptionHi: 'मटर के साथ गोभी', category: 'maincourse', quantity: 0, price: 150, image: matarGobhiImage },
+    { id: 29, name: 'Paneer Gobhi', nameHi: 'पनीर गोभी', description: 'Paneer with cauliflower', descriptionHi: 'गोभी के साथ पनीर', category: 'maincourse', quantity: 0, price: 160, image: paneerGobhiImage },
+    { id: 30, name: 'Sev Bhaji', nameHi: 'सेव भाजी', description: 'Sev in spicy gravy', descriptionHi: 'मसालेदार ग्रेवी में सेव', category: 'maincourse', quantity: 0, price: 150, image: sevBhajiImage },
+    { id: 31, name: 'Cheese Tomato', nameHi: 'चीज़ टमाटर', description: 'Cheese with tomatoes', descriptionHi: 'टमाटर के साथ चीज़', category: 'maincourse', quantity: 0, price: 220, image: cheeseTomatoImage },
     { id: 32, name: 'Palak Paneer', nameHi: 'पालक पनीर', description: 'Paneer with spinach', descriptionHi: 'पालक के साथ पनीर', category: 'maincourse', quantity: 0, price: 190, image: palakPaneerImage },
-    { id: 33, name: 'Tomato Chutney', nameHi: 'टमाटर चटनी', description: 'Spiced tomato chutney', descriptionHi: 'मसालेदार टमाटर चटनी', category: 'maincourse', quantity: 0, price: 120, image: tomatoChutneyImage },
+    { id: 33, name: 'Tomato Chutney', nameHi: 'टमाटर चटनी', description: 'Spiced tomato chutney', descriptionHi: 'मसालेदार टमाटर चटनी', category: 'maincourse', quantity: 0, price: 150, image: tomatoChutneyImage },
     { id: 34, name: 'Paneer Methi Malai', nameHi: 'पनीर मेथी मलाई', description: 'Paneer with fenugreek', descriptionHi: 'मेथी के साथ पनीर', category: 'maincourse', quantity: 0, price: 200, image: paneerMethiMalaiImage },
-    { id: 35, name: 'Mushroom', nameHi: 'मशरूम', description: 'Delicious mushrooms', descriptionHi: 'स्वादिष्ट मशरूम', category: 'maincourse', quantity: 0, price: 150, image: mushroomImage },
-    { id: 36, name: 'Veg. Kohlapuri', nameHi: 'वेज. कोल्हापुरी', description: 'Spicy veg Kohlapuri', descriptionHi: 'मसालेदार वेज कोल्हापुरी', category: 'maincourse', quantity: 0, price: 210, image: vegKohlapuriImage },
+    { id: 35, name: 'Mushroom', nameHi: 'मशरूम', description: 'Delicious mushrooms', descriptionHi: 'स्वादिष्ट मशरूम', category: 'maincourse', quantity: 0, price: 210, image: mushroomImage },
+    { id: 36, name: 'Veg. Kohlapuri', nameHi: 'वेज. कोल्हापुरी', description: 'Spicy veg Kohlapuri', descriptionHi: 'मसालेदार वेज कोल्हापुरी', category: 'maincourse', quantity: 0, price: 180, image: vegKohlapuriImage },
+    { id: 186, name: 'Dal Fry (Half Plate)', nameHi: 'दाल फ्राई (हाफ प्लेट)', description: 'Flavorful dal fry', descriptionHi: 'स्वादिष्ट दाल फ्राई', category: 'maincourse half plate', quantity: 0, price: 50, image: dalFryImage },
+{ id: 187, name: 'Dal Tadka (Half Plate)', nameHi: 'दाल तड़का (हाफ प्लेट)', description: 'Spiced dal tadka', descriptionHi: 'मसालेदार दाल तड़का', category: 'maincourse half plate', quantity: 0, price: 50, image: dalTadkaImage },
+{ id: 188, name: 'Dal Haryali (Half Plate)', nameHi: 'दाल हरियाली (हाफ प्लेट)', description: 'Green herb dal', descriptionHi: 'हरी जड़ी-बूटी की दाल', category: 'maincourse half plate', quantity: 0, price: 100, image: dalHaryaliImage },
+{ id: 189, name: 'Dal Makhani (Half Plate)', nameHi: 'दाल मखनी (हाफ प्लेट)', description: 'Creamy dal makhani', descriptionHi: 'क्रीमी दाल मखनी', category: 'maincourse half plate', quantity: 0, price: 120, image: dalMakhaniImage },
+{ id: 190, name: 'Dal Handi (Half Plate)', nameHi: 'दाल हांडी (हाफ प्लेट)', description: 'Traditional handi dal', descriptionHi: 'पारंपरिक हांडी दाल', category: 'maincourse half plate', quantity: 0, price: 100, image: dalHandiImage },
+{ id: 191, name: 'Rajma Fry (Half Plate)', nameHi: 'राजमा फ्राई (हाफ प्लेट)', description: 'Fried rajma curry', descriptionHi: 'तली हुई राजमा करी', category: 'maincourse half plate', quantity: 0, price: 100, image: rajmaFryImage },
+{ id: 192, name: 'Chana Masala (Half Plate)', nameHi: 'चना मसाला (हाफ प्लेट)', description: 'Spiced chickpea curry', descriptionHi: 'मसालेदार चना करी', category: 'maincourse half plate', quantity: 0, price: 90, image: chanaMasalaImage },
+{ id: 193, name: 'Kadhi Fry (Half Plate)', nameHi: 'कढ़ी फ्राई (हाफ प्लेट)', description: 'Fried kadhi curry', descriptionHi: 'तली हुई कढ़ी करी', category: 'maincourse half plate', quantity: 0, price: 70, image: kadhiFryImage },
+{ id: 194, name: 'Shahi Paneer (Half Plate)', nameHi: 'शाही पनीर (हाफ प्लेट)', description: 'Rich shahi paneer', descriptionHi: 'रिच शाही पनीर', category: 'maincourse half plate', quantity: 0, price: 130, image: shahiPaneerImage },
+{ id: 195, name: 'Kadhai Paneer (Half Plate)', nameHi: 'कड़ाही पनीर (हाफ प्लेट)', description: 'Paneer in kadhai masala', descriptionHi: 'कड़ाही मसाला में पनीर', category: 'maincourse half plate', quantity: 0, price: 130, image: kadhaiPaneerImage },
+{ id: 196, name: 'Matar Paneer (Half Plate)', nameHi: 'मटर पनीर (हाफ प्लेट)', description: 'Paneer with peas', descriptionHi: 'मटर के साथ पनीर', category: 'maincourse half plate', quantity: 0, price: 120, image: matarPaneerImage },
+{ id: 197, name: 'Paneer Butter Masala (Half Plate)', nameHi: 'पनीर बटर मसाला (हाफ प्लेट)', description: 'Paneer in butter masala', descriptionHi: 'बटर मसाला में पनीर', category: 'maincourse half plate', quantity: 0, price: 150, image: paneerButterMasalaImage },
+{ id: 198, name: 'Paneer Dopyaza (Half Plate)', nameHi: 'पनीर दोप्याजा (हाफ प्लेट)', description: 'Paneer with onions', descriptionHi: 'प्याज के साथ पनीर', category: 'maincourse half plate', quantity: 0, price: 130, image: paneerDopyazaImage },
+{ id: 199, name: 'Paneer Handi (Half Plate)', nameHi: 'पनीर हांडी (हाफ प्लेट)', description: 'Paneer in handi', descriptionHi: 'हांडी में पनीर', category: 'maincourse half plate', quantity: 0, price: 170, image: paneerHandiImage },
+{ id: 200, name: 'Paneer Bhurji (Half Plate)', nameHi: 'पनीर भुर्जी (हाफ प्लेट)', description: 'Scrambled paneer', descriptionHi: 'पनीर भुर्जी', category: 'maincourse half plate', quantity: 0, price: 100, image: paneerBhurjiImage },
+{ id: 201, name: 'Paneer Lababdar (Half Plate)', nameHi: 'पनीर लबाबदार (हाफ प्लेट)', description: 'Rich paneer curry', descriptionHi: 'रिच पनीर करी', category: 'maincourse half plate', quantity: 0, price: 110, image: paneerLababdarImage },
+{ id: 202, name: 'Paneer Pasonda (Half Plate)', nameHi: 'पनीर पासोंडा (हाफ प्लेट)', description: 'Paneer in spiced gravy', descriptionHi: 'मसालेदार ग्रेवी में पनीर', category: 'maincourse half plate', quantity: 0, price: 140, image: paneerPasondaImage },
+{ id: 203, name: 'Tandoori Paneer (Half Plate)', nameHi: 'तंदूरी पनीर (हाफ प्लेट)', description: 'Grilled tandoori paneer', descriptionHi: 'ग्रिल्ड तंदूरी पनीर', category: 'maincourse half plate', quantity: 0, price: 110, image: tandooriPaneerImage },
+{ id: 204, name: 'Mushroom Butter Masala (Half Plate)', nameHi: 'मशरूम बटर मसाला (हाफ प्लेट)', description: 'Mushrooms in butter masala', descriptionHi: 'बटर मसाला में मशरूम', category: 'maincourse half plate', quantity: 0, price: 110, image: mushroomButterMasalaImage },
+{ id: 205, name: 'Matar Mushroom (Half Plate)', nameHi: 'मटर मशरूम (हाफ प्लेट)', description: 'Mushrooms with peas', descriptionHi: 'मटर के साथ मशरूम', category: 'maincourse half plate', quantity: 0, price: 150, image: matarMushroomImage },
+{ id: 206, name: 'Mushroom Dopyaza (Half Plate)', nameHi: 'मशरूम दोप्याजा (हाफ प्लेट)', description: 'Mushrooms with onions', descriptionHi: 'प्याज के साथ मशरूम', category: 'maincourse half plate', quantity: 0, price: 150, image: mushroomDopyazaImage },
+{ id: 207, name: 'Tandoori Mushroom (Half Plate)', nameHi: 'तंदूरी मशरूम (हाफ प्लेट)', description: 'Grilled tandoori mushrooms', descriptionHi: 'ग्रिल्ड तंदूरी मशरूम', category: 'maincourse half plate', quantity: 0, price: 90, image: tandooriMushroomImage },
+{ id: 208, name: 'Kadhai Mushroom (Half Plate)', nameHi: 'कड़ाही मशरूम (हाफ प्लेट)', description: 'Mushrooms in kadhai masala', descriptionHi: 'कड़ाही मसाला में मशरूम', category: 'maincourse half plate', quantity: 0, price: 120, image: kadhaiMushroomImage },
+{ id: 209, name: 'Dum Aloo (Half Plate)', nameHi: 'दम आलू (हाफ प्लेट)', description: 'Potato dumplings in gravy', descriptionHi: 'ग्रेवी में आलू दम', category: 'maincourse half plate', quantity: 0, price: 130, image: dumAlooImage },
+{ id: 210, name: 'Jeera Aloo (Half Plate)', nameHi: 'जीरा आलू (हाफ प्लेट)', description: 'Potatoes with cumin', descriptionHi: 'जीरे के साथ आलू', category: 'maincourse half plate', quantity: 0, price: 130, image: jeeraAlooImage },
+{ id: 211, name: 'Mix Veg (Half Plate)', nameHi: 'मिक्स वेज (हाफ प्लेट)', description: 'Mixed vegetable curry', descriptionHi: 'मिक्स वेज करी', category: 'maincourse half plate', quantity: 0, price: 140, image: mixVegImage },
+{ id: 212, name: 'Malai Kofta (Half Plate)', nameHi: 'मलाई कोफ्ता (हाफ प्लेट)', description: 'Kofta in creamy gravy', descriptionHi: 'क्रीमी ग्रेवी में कोफ्ता', category: 'maincourse half plate', quantity: 0, price: 90, image: malaiKoftaImage },
+{ id: 213, name: 'Matar Gobhi (Half Plate)', nameHi: 'मटर गोभी (हाफ प्लेट)', description: 'Peas with cauliflower', descriptionHi: 'मटर के साथ गोभी', category: 'maincourse half plate', quantity: 0, price: 70, image: matarGobhiImage },
+{ id: 214, name: 'Paneer Gobhi (Half Plate)', nameHi: 'पनीर गोभी (हाफ प्लेट)', description: 'Paneer with cauliflower', descriptionHi: 'गोभी के साथ पनीर', category: 'maincourse half plate', quantity: 0, price: 100, image: paneerGobhiImage },
+{ id: 215, name: 'Sev Bhaji (Half Plate)', nameHi: 'सेव भाजी (हाफ प्लेट)', description: 'Sev in spicy gravy', descriptionHi: 'मसालेदार ग्रेवी में सेव', category: 'maincourse half plate', quantity: 0, price: 170, image: sevBhajiImage },
+{ id: 216, name: 'Cheese Tomato (Half Plate)', nameHi: 'चीज़ टमाटर (हाफ प्लेट)', description: 'Cheese with tomatoes', descriptionHi: 'टमाटर के साथ चीज़', category: 'maincourse half plate', quantity: 0, price: 100, image: cheeseTomatoImage },
+{ id: 217, name: 'Palak Paneer (Half Plate)', nameHi: 'पालक पनीर (हाफ प्लेट)', description: 'Paneer with spinach', descriptionHi: 'पालक के साथ पनीर', category: 'maincourse half plate', quantity: 0, price: 90, image: palakPaneerImage },
+{ id: 218, name: 'Tomato Chutney (Half Plate)', nameHi: 'टमाटर चटनी (हाफ प्लेट)', description: 'Spiced tomato chutney', descriptionHi: 'मसालेदार टमाटर चटनी', category: 'maincourse half plate', quantity: 0, price: 120, image: tomatoChutneyImage },
+{ id: 219, name: 'Paneer Methi Malai (Half Plate)', nameHi: 'पनीर मेथी मलाई (हाफ प्लेट)', description: 'Paneer with fenugreek', descriptionHi: 'मेथी के साथ पनीर', category: 'maincourse half plate', quantity: 0, price: 130, image: paneerMethiMalaiImage },
+{ id: 220, name: 'Mushroom (Half Plate)', nameHi: 'मशरूम (हाफ प्लेट)', description: 'Delicious mushrooms', descriptionHi: 'स्वादिष्ट मशरूम', category: 'maincourse half plate', quantity: 0, price: 120, image: mushroomImage },
+{ id: 221, name: 'Veg. Kohlapuri (Half Plate)', nameHi: 'वेज. कोल्हापुरी (हाफ प्लेट)', description: 'Spicy veg Kohlapuri', descriptionHi: 'मसालेदार वेज कोल्हापुरी', category: 'maincourse half plate', quantity: 0, price: 120, image: vegKohlapuriImage }
+
 //     { id: 37, name: 'Plain Paratha', nameHi: 'प्लेन पराठा', description: 'Simple and tasty plain paratha', descriptionHi: 'साधारण और स्वादिष्ट प्लेन पराठा', category: 'paratha', quantity: 0, price: 30, image: plainParathaImage },
 //     { id: 38, name: 'Lachha Paratha', nameHi: 'लच्छा पराठा', description: 'Layered crispy paratha', descriptionHi: 'लेयर्ड क्रिस्पी पराठा', category: 'paratha', quantity: 0, price: 40, image: lachhaParathaImage },
 //     { id: 39, name: 'Aloo Paratha', nameHi: 'आलू पराठा', description: 'Stuffed with spiced potatoes', descriptionHi: 'मसालेदार आलू से भरा हुआ', category: 'paratha', quantity: 0, price: 50, image: alooParathaImage },
@@ -276,6 +341,9 @@ const App = () => {
   const [isBasketOpen, setIsBasketOpen] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState(''); // Payment method state
   
+  
+
+ 
 
   const UpiPayment = ({ grandTotal }) => {
     
@@ -446,12 +514,31 @@ const App = () => {
       </div>
       <div id="topheading" className="categories">
         <button onClick={() => setCategory('all')}>{isHindi ? 'सभी' : 'All'}</button>
-        <button onClick={() => setCategory('fastfood')}>{isHindi ? 'फास्ट फूड' : 'Fast Food'}</button>
-        <button onClick={() => setCategory('maincourse')}>{isHindi ? 'मुख्य पाठ्यक्रम' : 'Main Course'}</button>
-        <button onClick={() => setCategory('chinese')}>{isHindi ? 'चाइनीज' : 'Chinese Special'}</button>
-        <button onClick={() => setCategory('dessert')}>{isHindi ? 'मिठाई' : 'Dessert'}</button>
-        <button onClick={() => setCategory('ricedishes')}>{isHindi ? 'चावल के व्यंजन' : 'Rice Dishes'}</button>
-        <button onClick={() => setCategory('starters')}>{isHindi ? 'स्टार्टर्स' : 'Starters'}</button>
+        <button onClick={() => setCategory('maincourse')}>{isHindi ? 'मुख्य सब्जी' : 'Main Course'}</button>
+        <button onClick={() => setCategory('maincourse half plate')}>{isHindi ? 'मुख्य सब्जी (आधा प्लेट)' : 'Main Course Half Plate'}</button>
+
+
+       
+        <button onClick={() => setCategory('paratha')}>{isHindi ? 'पराठा' : 'Paratha'}</button>
+<button onClick={() => setCategory('raita')}>{isHindi ? 'रायता' : 'Raita'}</button>
+<button onClick={() => setCategory('snacks_half_plate')}>{isHindi ? 'नाश्ता (आधा प्लेट)' : 'Snacks Half Plate'}</button>
+<button onClick={() => setCategory('snacks')}>{isHindi ? 'नाश्ता' : 'Snacks'}</button>
+<button onClick={() => setCategory('breads')}>{isHindi ? 'ब्रेड' : 'Breads'}</button>
+<button onClick={() => setCategory('sandwich')}>{isHindi ? 'सैंडविच' : 'Sandwich'}</button>
+<button onClick={() => setCategory('tikka')}>{isHindi ? 'टिक्का' : 'Tikka'}</button>
+<button onClick={() => setCategory('pizza')}>{isHindi ? 'पिज्जा' : 'Pizza'}</button>
+<button onClick={() => setCategory('chaap')}>{isHindi ? 'चाप' : 'Chaap'}</button>
+<button onClick={() => setCategory('salad')}>{isHindi ? 'सलाद' : 'Salad'}</button>
+<button onClick={() => setCategory('papad')}>{isHindi ? 'पापड़' : 'Papad'}</button>
+<button onClick={() => setCategory('rice')}>{isHindi ? 'चावल' : 'Rice'}</button>
+<button onClick={() => setCategory('soup')}>{isHindi ? 'सूप' : 'Soup'}</button>
+
+<button onClick={() => setCategory('shake_half_plate')}>{isHindi ? 'छोटे साइज़ का शेक' : 'Shake Small Size'}</button>
+<button onClick={() => setCategory('shake')}>{isHindi ? 'शेक' : 'Shake'}</button>
+<button onClick={() => setCategory('mocktail')}>{isHindi ? 'मॉकटेल' : 'Mocktail'}</button>
+<button onClick={() => setCategory('burger')}>{isHindi ? 'बर्गर' : 'Burger'}</button>
+<button onClick={() => setCategory('tea')}>{isHindi ? 'चाय' : 'Tea'}</button>
+<button onClick={() => setCategory('maggi')}>{isHindi ? 'मैगी' : 'Maggi'}</button>
       </div>
       <div className="menu-list">
         {filteredItems.map(item => (
