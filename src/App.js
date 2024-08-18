@@ -47,44 +47,44 @@ import paneerMethiMalaiImage from './images/Methi-Malai-Paneer.jpg';
 import mushroomImage from './images/mushroom.jpg';
 import vegKohlapuriImage from './images/Veg-Kolhapuri.jpg';
 
+// Importing images
+import plainParathaImage from './images/plainParathaImage.jpg';
+import lachhaParathaImage from './images/lachhaParathaImage.jpeg';
+import alooParathaImage from './images/alooParathaImage.jpg';
+import butterNaanImage from './images/butterNaanImage.jpeg';
+import pyazParathaImage from './images/pyazParathaImage.png';
+import gobhiParathaImage from './images/gobhiParathaImage.jpg';
+import mooliParathaImage from './images/mooliParathaImage.jpg';
+import alooPyazTandooriParathaImage from './images/alooPyazTandooriParathaImage.jpg';
+import mixParathaImage from './images/mixParathaImage.jpg';
+import alooPyazParathaImage from './images/alooPyazParathaImage.jpg';
+import alooTandooriParathaImage from './images/alooTandooriParathaImage.jpg';
+import pyazTandooriParathaImage from './images/pyazTandooriParathaImage.jpg';
+import mooliTandooriParathaImage from './images/mooliTandooriParathaImage.jpg';
+import mixTandooriParathaImage from './images/mixTandooriParathaImage.jpg';
+import gobhiTandooriParathaImage from './images/gobhiTandooriParathaImage.jpg';
+import paneerParathaImage from './images/paneerParathaImage.jpg';
+import lachhaNaanImage from './images/lachhaNaanImage.jpg';
+import gobhiNaanImage from './images/gobhiNaanImage.jpg';
+import garlicNaanImage from './images/garlicNaanImage.jpg';
+import alooNaanImage from './images/alooNaanImage.jpg';
+import naanTandooriParathaImage from './images/naanTandooriParathaImage.jpg';
+import paneerTandooriParathaImage from './images/paneerTandooriParathaImage.jpg';
+import paneerNaanImage from './images/paneerNaanImage.jpg';
+
 
 // Define the tax rate
 const TAX_RATE = 0.05; // Example 18% tax rate
 
 // Component for displaying menu items
-const MenuItem = ({ item, onAdd, onRemove, isHindi, handlePlateSizeChange }) => (
+const MenuItem = ({ item, onAdd, onRemove, isHindi }) => (
+  
   <div className="menu-item">
     <img src={item.image} alt={item.name} />
     <div className="item-details">
       <h4>{isHindi ? item.nameHi : item.name}</h4>
       <p>{isHindi ? item.descriptionHi : item.description}</p>
-      
-      {/* Show toggle only for items with half and full plate options */}
-      {item.hasHalfAndFullPlate && (
-        <div className="plate-size-toggle">
-          <label>
-            <input
-              type="radio"
-              name={`plateSize-${item.id}`}
-              value="half"
-              checked={item.selectedPlateSize === 'half'}
-              onChange={() => handlePlateSizeChange(item.id, 'half')}
-            />
-            {isHindi ? 'हाफ प्लेट' : 'Half Plate'}
-          </label>
-          <label>
-            <input
-              type="radio"
-              name={`plateSize-${item.id}`}
-              value="full"
-              checked={item.selectedPlateSize === 'full'}
-              onChange={() => handlePlateSizeChange(item.id, 'full')}
-            />
-            {isHindi ? 'फुल प्लेट' : 'Full Plate'}
-          </label>
-        </div>
-      )}
-
+     
       <p>{isHindi ? `कीमत: ₹${item.price}` : `Price: ₹${item.price}`}</p>
       <div className="item-actions">
         <button onClick={() => onRemove(item)}><FaMinus /></button>
@@ -201,31 +201,31 @@ const App = () => {
 { id: 218, name: 'Tomato Chutney (Half Plate)', nameHi: 'टमाटर चटनी (हाफ प्लेट)', description: 'Spiced tomato chutney', descriptionHi: 'मसालेदार टमाटर चटनी', category: 'maincourse half plate', quantity: 0, price: 120, image: tomatoChutneyImage },
 { id: 219, name: 'Paneer Methi Malai (Half Plate)', nameHi: 'पनीर मेथी मलाई (हाफ प्लेट)', description: 'Paneer with fenugreek', descriptionHi: 'मेथी के साथ पनीर', category: 'maincourse half plate', quantity: 0, price: 130, image: paneerMethiMalaiImage },
 { id: 220, name: 'Mushroom (Half Plate)', nameHi: 'मशरूम (हाफ प्लेट)', description: 'Delicious mushrooms', descriptionHi: 'स्वादिष्ट मशरूम', category: 'maincourse half plate', quantity: 0, price: 120, image: mushroomImage },
-{ id: 221, name: 'Veg. Kohlapuri (Half Plate)', nameHi: 'वेज. कोल्हापुरी (हाफ प्लेट)', description: 'Spicy veg Kohlapuri', descriptionHi: 'मसालेदार वेज कोल्हापुरी', category: 'maincourse half plate', quantity: 0, price: 120, image: vegKohlapuriImage }
+{ id: 221, name: 'Veg. Kohlapuri (Half Plate)', nameHi: 'वेज. कोल्हापुरी (हाफ प्लेट)', description: 'Spicy veg Kohlapuri', descriptionHi: 'मसालेदार वेज कोल्हापुरी', category: 'maincourse half plate', quantity: 0, price: 120, image: vegKohlapuriImage },
 
-//     { id: 37, name: 'Plain Paratha', nameHi: 'प्लेन पराठा', description: 'Simple and tasty plain paratha', descriptionHi: 'साधारण और स्वादिष्ट प्लेन पराठा', category: 'paratha', quantity: 0, price: 30, image: plainParathaImage },
-//     { id: 38, name: 'Lachha Paratha', nameHi: 'लच्छा पराठा', description: 'Layered crispy paratha', descriptionHi: 'लेयर्ड क्रिस्पी पराठा', category: 'paratha', quantity: 0, price: 40, image: lachhaParathaImage },
-//     { id: 39, name: 'Aloo Paratha', nameHi: 'आलू पराठा', description: 'Stuffed with spiced potatoes', descriptionHi: 'मसालेदार आलू से भरा हुआ', category: 'paratha', quantity: 0, price: 50, image: alooParathaImage },
-//     { id: 40, name: 'Butter Naan', nameHi: 'बटर नान', description: 'Soft naan with butter', descriptionHi: 'माखन के साथ नरम नान', category: 'paratha', quantity: 0, price: 50, image: butterNaanImage },
-//     { id: 41, name: 'Pyaz Paratha', nameHi: 'प्याज़ पराठा', description: 'Paratha with onions', descriptionHi: 'प्याज़ के साथ पराठा', category: 'paratha', quantity: 0, price: 40, image: pyazParathaImage },
-//     { id: 42, name: 'Gobhi Paratha', nameHi: 'गोभी पराठा', description: 'Stuffed with spiced cauliflower', descriptionHi: 'मसालेदार गोभी से भरा हुआ', category: 'paratha', quantity: 0, price: 50, image: gobhiParathaImage },
-//     { id: 43, name: 'Mooli Paratha', nameHi: 'मooli पराठा', description: 'Stuffed with radish', descriptionHi: 'मूली से भरा हुआ', category: 'paratha', quantity: 0, price: 60, image: mooliParathaImage },
-//     { id: 44, name: 'Aloo Pyaz Tandoori Paratha', nameHi: 'आलू प्याज़ तंदूरी पराठा', description: 'Tandoori paratha with potatoes and onions', descriptionHi: 'आलू और प्याज़ के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 60, image: alooPyazTandooriParathaImage },
-//     { id: 45, name: 'Mix Paratha', nameHi: 'मिक्स पराठा', description: 'Mixed stuffing of various ingredients', descriptionHi: 'विभिन्न सामग्री का मिश्रण', category: 'paratha', quantity: 0, price: 60, image: mixParathaImage },
-//     { id: 46, name: 'Aloo Pyaz Paratha', nameHi: 'आलू प्याज़ पराठा', description: 'Paratha with potatoes and onions', descriptionHi: 'आलू और प्याज़ के साथ पराठा', category: 'paratha', quantity: 0, price: 60, image: alooPyazParathaImage },
-//     { id: 47, name: 'Aloo Tandoori Paratha', nameHi: 'आलू तंदूरी पराठा', description: 'Tandoori paratha with spiced potatoes', descriptionHi: 'मसालेदार आलू के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 60, image: alooTandooriParathaImage },
-//     { id: 48, name: 'Pyaz Tandoori Paratha', nameHi: 'प्याज़ तंदूरी पराठा', description: 'Tandoori paratha with onions', descriptionHi: 'प्याज़ के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 50, image: pyazTandooriParathaImage },
-//     { id: 49, name: 'Mooli Tandoori Paratha', nameHi: 'मूली तंदूरी पराठा', description: 'Tandoori paratha with radish', descriptionHi: 'मूली के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 60, image: mooliTandooriParathaImage },
-//     { id: 50, name: 'Mix Tandoori Paratha', nameHi: 'मिक्स तंदूरी पराठा', description: 'Tandoori paratha with mixed stuffing', descriptionHi: 'मिक्स स्टफिंग के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 60, image: mixTandooriParathaImage },
-//     { id: 51, name: 'Gobhi Tandoori Paratha', nameHi: 'गोभी तंदूरी पराठा', description: 'Tandoori paratha with spiced cauliflower', descriptionHi: 'मसालेदार गोभी के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 60, image: gobhiTandooriParathaImage },
-//     { id: 52, name: 'Paneer Paratha', nameHi: 'पनीर पराठा', description: 'Stuffed with spiced paneer', descriptionHi: 'मसालेदार पनीर से भरा हुआ', category: 'paratha', quantity: 0, price: 70, image: paneerParathaImage },
-//     { id: 53, name: 'Lachha Naan', nameHi: 'लच्छा नान', description: 'Layered crispy naan', descriptionHi: 'लेयर्ड क्रिस्पी नान', category: 'paratha', quantity: 0, price: 50, image: lachhaNaanImage },
-//     { id: 54, name: 'Gobhi Naan', nameHi: 'गोभी नान', description: 'Naan stuffed with cauliflower', descriptionHi: 'गोभी से भरा हुआ नान', category: 'paratha', quantity: 0, price: 50, image: gobhiNaanImage },
-//     { id: 55, name: 'Garlic Naan', nameHi: 'गार्लिक नान', description: 'Naan with garlic', descriptionHi: 'लहसुन के साथ नान', category: 'paratha', quantity: 0, price: 60, image: garlicNaanImage },
-//     { id: 56, name: 'Aloo Naan', nameHi: 'आलू नान', description: 'Naan stuffed with potatoes', descriptionHi: 'आलू से भरा हुआ नान', category: 'paratha', quantity: 0, price: 60, image: alooNaanImage },
-//     { id: 57, name: 'Naan Tandoori Paratha', nameHi: 'नान तंदूरी पराठा', description: 'Tandoori paratha with naan', descriptionHi: 'नान के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 70, image: naanTandooriParathaImage },
-//     { id: 58, name: 'Paneer Tandoori Paratha', nameHi: 'पनीर तंदूरी पराठा', description: 'Tandoori paratha with spiced paneer', descriptionHi: 'मसालेदार पनीर के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 70, image: paneerTandooriParathaImage },
-//     { id: 59, name: 'Paneer Naan', nameHi: 'पनीर नान', description: 'Naan stuffed with paneer', descriptionHi: 'पनीर से भरा हुआ नान', category: 'paratha', quantity: 0, price: 60, image: paneerNaanImage },
+    { id: 37, name: 'Plain Paratha', nameHi: 'प्लेन पराठा', description: 'Simple and tasty plain paratha', descriptionHi: 'साधारण और स्वादिष्ट प्लेन पराठा', category: 'paratha', quantity: 0, price: 30, image: plainParathaImage },
+    { id: 38, name: 'Lachha Paratha', nameHi: 'लच्छा पराठा', description: 'Layered crispy paratha', descriptionHi: 'लेयर्ड क्रिस्पी पराठा', category: 'paratha', quantity: 0, price: 40, image: lachhaParathaImage },
+    { id: 39, name: 'Aloo Paratha', nameHi: 'आलू पराठा', description: 'Stuffed with spiced potatoes', descriptionHi: 'मसालेदार आलू से भरा हुआ', category: 'paratha', quantity: 0, price: 50, image: alooParathaImage },
+    { id: 40, name: 'Butter Naan', nameHi: 'बटर नान', description: 'Soft naan with butter', descriptionHi: 'माखन के साथ नरम नान', category: 'paratha', quantity: 0, price: 50, image: butterNaanImage },
+    { id: 41, name: 'Pyaz Paratha', nameHi: 'प्याज़ पराठा', description: 'Paratha with onions', descriptionHi: 'प्याज़ के साथ पराठा', category: 'paratha', quantity: 0, price: 40, image: pyazParathaImage },
+    { id: 42, name: 'Gobhi Paratha', nameHi: 'गोभी पराठा', description: 'Stuffed with spiced cauliflower', descriptionHi: 'मसालेदार गोभी से भरा हुआ', category: 'paratha', quantity: 0, price: 50, image: gobhiParathaImage },
+    { id: 43, name: 'Mooli Paratha', nameHi: 'मooli पराठा', description: 'Stuffed with radish', descriptionHi: 'मूली से भरा हुआ', category: 'paratha', quantity: 0, price: 60, image: mooliParathaImage },
+    { id: 44, name: 'Aloo Pyaz Tandoori Paratha', nameHi: 'आलू प्याज़ तंदूरी पराठा', description: 'Tandoori paratha with potatoes and onions', descriptionHi: 'आलू और प्याज़ के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 60, image: alooPyazTandooriParathaImage },
+    { id: 45, name: 'Mix Paratha', nameHi: 'मिक्स पराठा', description: 'Mixed stuffing of various ingredients', descriptionHi: 'विभिन्न सामग्री का मिश्रण', category: 'paratha', quantity: 0, price: 60, image: mixParathaImage },
+    { id: 46, name: 'Aloo Pyaz Paratha', nameHi: 'आलू प्याज़ पराठा', description: 'Paratha with potatoes and onions', descriptionHi: 'आलू और प्याज़ के साथ पराठा', category: 'paratha', quantity: 0, price: 60, image: alooPyazParathaImage },
+    { id: 47, name: 'Aloo Tandoori Paratha', nameHi: 'आलू तंदूरी पराठा', description: 'Tandoori paratha with spiced potatoes', descriptionHi: 'मसालेदार आलू के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 60, image: alooTandooriParathaImage },
+    { id: 48, name: 'Pyaz Tandoori Paratha', nameHi: 'प्याज़ तंदूरी पराठा', description: 'Tandoori paratha with onions', descriptionHi: 'प्याज़ के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 50, image: pyazTandooriParathaImage },
+    { id: 49, name: 'Mooli Tandoori Paratha', nameHi: 'मूली तंदूरी पराठा', description: 'Tandoori paratha with radish', descriptionHi: 'मूली के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 60, image: mooliTandooriParathaImage },
+    { id: 50, name: 'Mix Tandoori Paratha', nameHi: 'मिक्स तंदूरी पराठा', description: 'Tandoori paratha with mixed stuffing', descriptionHi: 'मिक्स स्टफिंग के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 60, image: mixTandooriParathaImage },
+    { id: 51, name: 'Gobhi Tandoori Paratha', nameHi: 'गोभी तंदूरी पराठा', description: 'Tandoori paratha with spiced cauliflower', descriptionHi: 'मसालेदार गोभी के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 60, image: gobhiTandooriParathaImage },
+    { id: 52, name: 'Paneer Paratha', nameHi: 'पनीर पराठा', description: 'Stuffed with spiced paneer', descriptionHi: 'मसालेदार पनीर से भरा हुआ', category: 'paratha', quantity: 0, price: 70, image: paneerParathaImage },
+    { id: 53, name: 'Lachha Naan', nameHi: 'लच्छा नान', description: 'Layered crispy naan', descriptionHi: 'लेयर्ड क्रिस्पी नान', category: 'paratha', quantity: 0, price: 50, image: lachhaNaanImage },
+    { id: 54, name: 'Gobhi Naan', nameHi: 'गोभी नान', description: 'Naan stuffed with cauliflower', descriptionHi: 'गोभी से भरा हुआ नान', category: 'paratha', quantity: 0, price: 50, image: gobhiNaanImage },
+    { id: 55, name: 'Garlic Naan', nameHi: 'गार्लिक नान', description: 'Naan with garlic', descriptionHi: 'लहसुन के साथ नान', category: 'paratha', quantity: 0, price: 60, image: garlicNaanImage },
+    { id: 56, name: 'Aloo Naan', nameHi: 'आलू नान', description: 'Naan stuffed with potatoes', descriptionHi: 'आलू से भरा हुआ नान', category: 'paratha', quantity: 0, price: 60, image: alooNaanImage },
+    { id: 57, name: 'Naan Tandoori Paratha', nameHi: 'नान तंदूरी पराठा', description: 'Tandoori paratha with naan', descriptionHi: 'नान के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 70, image: naanTandooriParathaImage },
+    { id: 58, name: 'Paneer Tandoori Paratha', nameHi: 'पनीर तंदूरी पराठा', description: 'Tandoori paratha with spiced paneer', descriptionHi: 'मसालेदार पनीर के साथ तंदूरी पराठा', category: 'paratha', quantity: 0, price: 70, image: paneerTandooriParathaImage },
+    { id: 59, name: 'Paneer Naan', nameHi: 'पनीर नान', description: 'Naan stuffed with paneer', descriptionHi: 'पनीर से भरा हुआ नान', category: 'paratha', quantity: 0, price: 60, image: paneerNaanImage },
 //     { id: 60, name: 'French Fry', nameHi: 'फ्रेंच फ्राई', description: 'Crispy and golden fries', descriptionHi: 'क्रिस्पी और सुनहरे फ्राइज़', category: 'snacks', quantity: 0, price: { halfPlate: 50, fullPlate: 70 }, image: frenchFryImage },
 //     { id: 61, name: 'Peri Peri Fry', nameHi: 'पेरी पेरी फ्राई', description: 'Spicy peri peri flavored fries', descriptionHi: 'स्पाइसी पेरि पेरि फ्लेवर्ड फ्राइज़', category: 'snacks', quantity: 0, price: { halfPlate: 70, fullPlate: 90 }, image: periPeriFryImage },
 //     { id: 62, name: 'Veg Chowmein', nameHi: 'वेज़ चाउमीन', description: 'Stir-fried noodles with mixed vegetables', descriptionHi: 'मिश्रित सब्जियों के साथ तले हुए नूडल्स', category: 'snacks', quantity: 0, price: { halfPlate: 60, fullPlate: 90 }, image: vegChowmeinImage },
@@ -347,12 +347,10 @@ const App = () => {
 
   const UpiPayment = ({ grandTotal }) => {
     
-    // const [paymentMethod, setPaymentMethod] = useState("");
+
     const upiId = "9817409607@ybl";
   
-    // const handlePaymentMethodChange = (event) => {
-    //   setPaymentMethod(event.target.value);
-    // };
+  
   
     const upiLink = `upi://pay?pa=${upiId}&pn=PaperPalace&am=${grandTotal}&tn=Payment for Chaupad Food`;
   
