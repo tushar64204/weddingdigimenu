@@ -3,7 +3,14 @@ import QRCode from 'qrcode.react';
 import './App.css';
 import { FaMinus, FaPlus, FaTrash, FaChevronDown, FaChevronUp, FaShoppingBasket, FaArrowUp  } from 'react-icons/fa';
 
+import { FaUtensils, FaBreadSlice, FaPizzaSlice, FaHamburger, FaCoffee, FaIceCream } from 'react-icons/fa';
+import { GiIndianPalace, GiSandwich, GiRiceCooker, GiNoodles, GiMeat } from 'react-icons/gi';
+import { MdLocalDrink, MdSoupKitchen, MdSpa, MdLunchDining } from 'react-icons/md';
+import { TbPepper } from 'react-icons/tb';
 
+import { GiChipsBag} from 'react-icons/gi';  // For Paratha, Snacks, and Salad
+import { MdOutlineBakeryDining } from 'react-icons/md';  // Another option for Paratha
+import { FaLeaf } from 'react-icons/fa';  // Using FaLeaf for Salad
 
 // Import images
 
@@ -794,35 +801,139 @@ const App = () => {
         />
       </div>
       <div id="topheading" className="categories">
-        <button onClick={() => setCategory('all')}>{isHindi ? 'सभी' : 'All'}</button>
-        <button onClick={() => setCategory('maincourse')}>{isHindi ? 'मुख्य सब्जी' : 'Main Course'}</button>
-        <button onClick={() => setCategory('maincourse half plate')}>{isHindi ? 'मुख्य सब्जी (आधा प्लेट)' : 'Main Course Half Plate'}</button>
-
-
-       
-        <button onClick={() => setCategory('paratha')}>{isHindi ? 'पराठा' : 'Paratha'}</button>
-<button onClick={() => setCategory('raita')}>{isHindi ? 'रायता' : 'Raita'}</button>
-
-<button onClick={() => setCategory('snacks_half_plate')}>{isHindi ? 'नाश्ता (आधा प्लेट)' : 'Snacks Half Plate'}</button>
-<button onClick={() => setCategory('snacks')}>{isHindi ? 'नाश्ता' : 'Snacks'}</button>
-
-<button onClick={() => setCategory('breads')}>{isHindi ? 'रोटी' : 'Breads'}</button>
-<button onClick={() => setCategory('sandwich')}>{isHindi ? 'सैंडविच' : 'Sandwich'}</button>
-<button onClick={() => setCategory('tikka')}>{isHindi ? 'टिक्का' : 'Tikka'}</button>
-<button onClick={() => setCategory('pizza')}>{isHindi ? 'पिज्जा' : 'Pizza'}</button>
-<button onClick={() => setCategory('chaap')}>{isHindi ? 'चाप' : 'Chaap'}</button>
-<button onClick={() => setCategory('halfchaap')}>{isHindi ? 'चाप' : 'Half Chaap'}</button>
-<button onClick={() => setCategory('salad')}>{isHindi ? 'सलाद' : 'Salad'}</button>
-<button onClick={() => setCategory('papad')}>{isHindi ? 'पापड़' : 'Papad'}</button>
-<button onClick={() => setCategory('rice')}>{isHindi ? 'चावल' : 'Rice'}</button>
-<button onClick={() => setCategory('soup')}>{isHindi ? 'सूप' : 'Soup'}</button>
-
-<button onClick={() => setCategory('shake')}>{isHindi ? 'शेक' : 'Shake'}</button>
-<button onClick={() => setCategory('mocktail')}>{isHindi ? 'मॉकटेल' : 'Mocktail'}</button>
-<button onClick={() => setCategory('burger')}>{isHindi ? 'बर्गर' : 'Burger'}</button>
-<button onClick={() => setCategory('tea-coffee')}>{isHindi ? 'चाय' : 'Tea'}</button>
-<button onClick={() => setCategory('maggi')}>{isHindi ? 'मैगी' : 'Maggi'}</button>
+      <div className="category">
+        <FaUtensils size={50} />
+        <button onClick={() => setCategory('all')}>
+          {isHindi ? 'सभी' : 'All'}
+        </button>
       </div>
+      <div className="category">
+        <GiIndianPalace size={50} />
+        <button onClick={() => setCategory('maincourse')}>
+          {isHindi ? 'मुख्य सब्जी' : 'Main Course'}
+        </button>
+      </div>
+      <div className="category">
+        <MdLunchDining size={50} />
+        <button onClick={() => setCategory('maincourse half plate')}>
+          {isHindi ? 'मुख्य सब्जी (आधा प्लेट)' : 'Main Course Half Plate'}
+        </button>
+      </div>
+      <div className="category">
+        <MdOutlineBakeryDining size={50} />
+        <button onClick={() => setCategory('paratha')}>
+          {isHindi ? 'पराठा' : 'Paratha'}
+        </button>
+      </div>
+      <div className="category">
+        <MdSpa size={50} />
+        <button onClick={() => setCategory('raita')}>
+          {isHindi ? 'रायता' : 'Raita'}
+        </button>
+      </div>
+      <div className="category">
+        <GiChipsBag size={50} />
+        <button onClick={() => setCategory('snacks_half_plate')}>
+          {isHindi ? 'नाश्ता (आधा प्लेट)' : 'Snacks Half Plate'}
+        </button>
+      </div>
+      <div className="category">
+        <GiChipsBag size={50} />
+        <button onClick={() => setCategory('snacks')}>
+          {isHindi ? 'नाश्ता' : 'Snacks'}
+        </button>
+      </div>
+      <div className="category">
+        <FaBreadSlice size={50} />
+        <button onClick={() => setCategory('breads')}>
+          {isHindi ? 'रोटी' : 'Breads'}
+        </button>
+      </div>
+      <div className="category">
+        <GiSandwich size={50} />
+        <button onClick={() => setCategory('sandwich')}>
+          {isHindi ? 'सैंडविच' : 'Sandwich'}
+        </button>
+      </div>
+      <div className="category">
+        <GiMeat size={50} />
+        <button onClick={() => setCategory('tikka')}>
+          {isHindi ? 'टिक्का' : 'Tikka'}
+        </button>
+      </div>
+      <div className="category">
+        <FaPizzaSlice size={50} />
+        <button onClick={() => setCategory('pizza')}>
+          {isHindi ? 'पिज्जा' : 'Pizza'}
+        </button>
+      </div>
+      <div className="category">
+        <TbPepper size={50} />
+        <button onClick={() => setCategory('chaap')}>
+          {isHindi ? 'चाप' : 'Chaap'}
+        </button>
+      </div>
+      <div className="category">
+        <TbPepper size={50} />
+        <button onClick={() => setCategory('halfchaap')}>
+          {isHindi ? 'चाप (आधा)' : 'Half Chaap'}
+        </button>
+      </div>
+      <div className="category">
+        <FaLeaf size={50} />
+        <button onClick={() => setCategory('salad')}>
+          {isHindi ? 'सलाद' : 'Salad'}
+        </button>
+      </div>
+      <div className="category">
+        <MdOutlineBakeryDining size={50} />
+        <button onClick={() => setCategory('papad')}>
+          {isHindi ? 'पापड़' : 'Papad'}
+        </button>
+      </div>
+      <div className="category">
+        <GiRiceCooker size={50} />
+        <button onClick={() => setCategory('rice')}>
+          {isHindi ? 'चावल' : 'Rice'}
+        </button>
+      </div>
+      <div className="category">
+        <MdSoupKitchen size={50} />
+        <button onClick={() => setCategory('soup')}>
+          {isHindi ? 'सूप' : 'Soup'}
+        </button>
+      </div>
+      <div className="category">
+        <FaIceCream size={50} />
+        <button onClick={() => setCategory('shake')}>
+          {isHindi ? 'शेक' : 'Shake'}
+        </button>
+      </div>
+      <div className="category">
+        <MdLocalDrink size={50} />
+        <button onClick={() => setCategory('mocktail')}>
+          {isHindi ? 'मॉकटेल' : 'Mocktail'}
+        </button>
+      </div>
+      <div className="category">
+        <FaHamburger size={50} />
+        <button onClick={() => setCategory('burger')}>
+          {isHindi ? 'बर्गर' : 'Burger'}
+        </button>
+      </div>
+      <div className="category">
+        <FaCoffee size={50} />
+        <button onClick={() => setCategory('tea-coffee')}>
+          {isHindi ? 'चाय' : 'Tea/Coffee'}
+        </button>
+      </div>
+      <div className="category">
+        <GiNoodles size={50} />
+        <button onClick={() => setCategory('maggi')}>
+          {isHindi ? 'मैगी' : 'Maggi'}
+        </button>
+      </div>
+    </div>
       <div className="menu-list">
         {filteredItems.map(item => (
           <MenuItem
