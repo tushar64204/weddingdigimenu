@@ -149,15 +149,19 @@
 .categories {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   padding: 10px;
+  overflow-x: auto; /* Enables horizontal scrolling */
+  white-space: nowrap; /* Ensures items stay in a row when scrolling */
+  max-height: 200px; /* Limits the height to fit two rows */
 }
 
 .category {
-  display: flex;
+  display: inline-flex; /* Ensures the items align horizontally */
   flex-direction: column;
   align-items: center;
   margin: 10px;
+  width: 30%; /* Controls the width of each item */
 }
 
 .category img {
@@ -176,9 +180,22 @@
   cursor: pointer;
 }
 
-.category button:hover {
-  text-decoration: underline;
+
+
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+  .categories {
+    flex-wrap: nowrap; /* No wrapping to maintain horizontal scroll */
+    overflow-x: scroll; /* Horizontal scroll on mobile */
+    overflow-y: hidden; /* Disable vertical scroll */
+  }
+
+  .category {
+    width: auto; /* Items resize dynamically in the row */
+    margin-right: 10px; /* Add space between the items */
+  }
 }
+
 
 .content {
   display: flex;
